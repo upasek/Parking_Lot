@@ -91,10 +91,9 @@ public class ParkingLot{
 							int spot = assignedspotlist.indexOf(cp);
 							//System.out.println("\n"+spot+"\n");
 
-							System.out.print("Enter Today's date : ");
-							String exitdate = scan.nextLine();
-							System.out.print("Enter exit time : ");
-							String exittime = scan.nextLine();
+							String exitdate = randominfo.ExitDate();
+
+							String exittime = randominfo.ExitTime();
 
 							String enterdate = assignedspotlist.get(spot).getDate();
 							String entertime = assignedspotlist.get(spot).getTime();
@@ -109,7 +108,8 @@ public class ParkingLot{
 									"    Car Type : "+assignedspotlist.get(spot).getAssignedCar().getCarType()+
 									"\nParking Time : "+assignedspotlist.get(spot).getTime()+
 									"    Exit Time : "+exittime+
-									"\nDate : "+assignedspotlist.get(spot).getDate()+
+									"\nParking Date : "+assignedspotlist.get(spot).getDate()+
+									"    Exit Date :" +exitdate+
 									"    Spot Number : "+assignedspotlist.get(spot).getSpotNumber()+
 									"\nTotal Time : "+time[0]+" Hour "+time[1]+" Minute "+
 									"\nTotal Amount : "+amount+" rupees\n"

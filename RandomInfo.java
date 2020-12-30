@@ -1,5 +1,7 @@
 import java.util.Random;
 import java.time.LocalDate;
+import java.time.LocalTime;
+import java.time.format.DateTimeFormatter;
 
 public class RandomInfo{
 	Random rand = new Random();
@@ -23,37 +25,37 @@ public class RandomInfo{
 		return color[res];
 	}
 
-	public String CarType(){
+	public String CarType() {
 		int typ = rand.nextInt(type.length);
 		return type[typ];
 	}
 
 
 	// information for parkingaticket
+	 public String Time(){
+		LocalTime localTime = LocalTime.now();
+		DateTimeFormatter dateTimeFormatter = DateTimeFormatter.ofPattern("hh:mm a");
+		String enterTime = localTime.format(dateTimeFormatter);
+		return enterTime;
+	}
 
-	String[] cardtype = {"Debit", "Credit"};
-	String[] daytype = {"AM", "PM"};
-
-	public String Time(){
-		int time = rand.nextInt(12 - 1) + 1;
-		int sec = rand.nextInt(59 - 1) + 1;
-		int typ = rand.nextInt(daytype.length);
-
-		String stringtime = Integer.toString(time);
-		String stringsec = Integer.toString(sec);
-		if(time < 10){
-			stringtime = "0"+time;
-		}
-		if(sec < 10){
-			stringsec = "0"+sec;
-		}
-		return (stringtime +":"+stringsec+" "+daytype[typ]);
+	public String ExitTime(){
+		LocalTime localTime = LocalTime.now();
+		DateTimeFormatter dateTimeFormatter = DateTimeFormatter.ofPattern("hh:mm a");
+		String exitTime = localTime.format(dateTimeFormatter);
+		return exitTime;
 	}
 
 	public String Date(){
 		LocalDate mydate = LocalDate.now();
 		return mydate.toString();
 	}
+	public String ExitDate(){
+		LocalDate date = LocalDate.now();
+		return date.toString();
+	}
+
+	String[] cardtype = {"Debit", "Credit"};
 	public String CardType(){
 		int caty = rand.nextInt(cardtype.length);
 		return cardtype[caty];

@@ -1,8 +1,10 @@
+import java.time.format.DateTimeFormatter;
+
 public class ParkingTicket{
 
 	//public String ParkingTime;
-	public String Date;
-	public String Time;
+	public String enterDate;
+	public String enterTime;
 	private long CardNumber ;
 	public String CardType;
 	public int SpotNumber;
@@ -18,19 +20,19 @@ public class ParkingTicket{
 	}
 
 	public String getDate(){
-		return Date;
+		return enterDate;
 	}
 
-	public void setDate(String Date){
-		this.Date = Date;
+	public void setDate(String enterDate){
+		this.enterDate = enterDate;
 	}
 
 	public String getTime(){
-		return Time;
+		return enterTime;
 	}
 
-	public void setTime(String Time){
-		this.Time = Time;
+	public void setTime(String enterTime){
+		this.enterTime = enterTime;
 	}
 
 	private long getCardNumber(){
