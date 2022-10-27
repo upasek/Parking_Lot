@@ -1,3 +1,5 @@
+package alphateam;
+
 public class Car{
 	public String NumberPlate;
 	public String CarColor; //red, yellow, green, etc..

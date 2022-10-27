@@ -1,11 +1,19 @@
+package alphateam;
+
 import java.util.ArrayList;
 import java.util.*;
 
+public class App{
+ 
+	public String getGreeting() {
+        return "Hello Alpha Team!";
+    }
 
-public class ParkingLot{
+    public static void main(String[] args) {
+        System.out.println(new App().getGreeting());
+    }
 
-	public static void main(String[] args){
-
+	public static void run() {
 		ArrayList<ParkingTicket> assignedspotlist = new ArrayList<>();
 
 
@@ -145,7 +153,5 @@ public class ParkingLot{
 			}
 
 		}
-
 	}
-
 }

@@ -1,3 +1,5 @@
+package alphateam;
+
 public class ScanTicket{
 
     public int cheaknumber(String inputnumber, String storenumber){

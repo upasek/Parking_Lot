@@ -1,3 +1,5 @@
+package alphateam;
+
 public class ParkingSpot{
 	
 	int[] arr = new int[10];
