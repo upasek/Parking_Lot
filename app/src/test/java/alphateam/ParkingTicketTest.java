@@ -2,9 +2,7 @@ package alphateam;
 
 import static org.junit.Assert.assertEquals;
 
-import org.junit.After;
 import org.junit.Before;
-import org.junit.BeforeClass;
 import org.junit.Test;
 
 public class ParkingTicketTest {
@@ -23,13 +21,13 @@ public class ParkingTicketTest {
     }
 
     @Test 
-    public void testToString() throws Exception {
+    public void testToString() {
         String expectedStr = "----- Parking Ticket -----" +
         "\nCar Number: " + parkingTicket.getAssignedCar().getNumberPlate() +
         "\nCar Color: " + parkingTicket.getAssignedCar().getCarColor() + 
         "\nCar Type: " + parkingTicket.getAssignedCar().getCarType() +
-        "\nTime: " + parkingTicket.getEnterTime() + 
-        "\nDate: " +  parkingTicket.getEnterDate() +
+        "\nTime: " + parkingTicket.getTime() + 
+        "\nDate: " +  parkingTicket.getDate() +
         "\nSpot Number: " + parkingTicket.getSpotNumber();
 
         String actualStr = parkingTicket.toString();

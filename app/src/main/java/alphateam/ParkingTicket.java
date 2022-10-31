@@ -24,8 +24,8 @@ public class ParkingTicket {
 			.append("\nCar Number: ").append(car.getNumberPlate())
 			.append("\nCar Color: ").append(car.getCarColor())
 			.append("\nCar Type: ").append(car.getCarType())
-			.append("\nTime: ").append(getEnterTime())
-			.append("\nDate: ").append(getEnterDate())
+			.append("\nTime: ").append(getTime())
+			.append("\nDate: ").append(getDate())
 			.append("\nSpot Number: ").append(getSpotNumber());
 
 		return str.toString();
@@ -39,19 +39,19 @@ public class ParkingTicket {
 		this.car = car;
 	}
 
-	public String getEnterDate(){
+	public String getDate(){
 		return date;
 	}
 
-	public void setEnterDate(String enterDate){
+	public void setDate(String enterDate){
 		this.date = enterDate;
 	}
 
-	public String getEnterTime(){
+	public String getTime(){
 		return time;
 	}
 
-	public void setEnterTime(String enterTime){
+	public void setTime(String enterTime){
 		this.time = enterTime;
 	}
 
