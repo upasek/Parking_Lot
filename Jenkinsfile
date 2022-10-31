@@ -5,12 +5,18 @@ pipeline {
     stages {
         stage('Build') {
             steps {
-                echo 'Building Parking Lot System'
+                sh './gradlew build'
             }
         }
-        stage('Test') {
+        stage('Unit Test') {
             steps {
-                echo 'Testing Parking Lot System'
+                script {
+                    try {
+                        sh './gradlew clean test --no-daemon'
+                    } finally {
+                        junit '**/build/test-results/test/*.xml'
+                    }
+                }
             }
         }
     }
