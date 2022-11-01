@@ -1,17 +1,35 @@
 package alphateam;
 
-import java.time.format.DateTimeFormatter;
-
-public class ParkingTicket{
-
-	//public String ParkingTime;
-	public String enterDate;
-	public String enterTime;
-	private long CardNumber ;
-	public String CardType;
-	public int SpotNumber;
-
+public class ParkingTicket {
 	public Car car;
+	private String date;
+	private String time;
+	private long cardNumber;
+	private String cardType;
+	private int spotNumber;
+	
+
+	public ParkingTicket(String enterDate, String enterTime, long cardNumber, String cardType, int spotNumber, Car car) {
+		this.date = enterDate;
+		this.time = enterTime;
+		this.cardNumber = cardNumber;
+		this.cardType = cardType;
+		this.spotNumber = spotNumber;
+		this.car = car;
+	}
+
+	public String toString() {
+		StringBuilder str = new StringBuilder();
+			str.append("----- Parking Ticket -----")
+			.append("\nCar Number: ").append(car.getNumberPlate())
+			.append("\nCar Color: ").append(car.getCarColor())
+			.append("\nCar Type: ").append(car.getCarType())
+			.append("\nTime: ").append(getTime())
+			.append("\nDate: ").append(getDate())
+			.append("\nSpot Number: ").append(getSpotNumber());
+
+		return str.toString();
+	}
 
 	public Car getAssignedCar(){
 		return car;
@@ -22,44 +40,43 @@ public class ParkingTicket{
 	}
 
 	public String getDate(){
-		return enterDate;
+		return date;
 	}
 
 	public void setDate(String enterDate){
-		this.enterDate = enterDate;
+		this.date = enterDate;
 	}
 
 	public String getTime(){
-		return enterTime;
+		return time;
 	}
 
 	public void setTime(String enterTime){
-		this.enterTime = enterTime;
+		this.time = enterTime;
 	}
 
 	private long getCardNumber(){
-		return CardNumber;
+		return cardNumber;
 	}
 
 	public void setCardNumber(long CardNumber){
-		this.CardNumber = CardNumber;
+		this.cardNumber = CardNumber;
 	}
 
 	private String getCardType(){
-		return CardType;
+		return cardType;
 	}
 
 	public void setCardType(String CardType){
-		this.CardType = CardType;
+		this.cardType = CardType;
 	}
 
-
 	public int getSpotNumber(){
-		return SpotNumber;
+		return spotNumber;
 	}
 
 	public void setSpotNumber(int SpotNumber){
-		this.SpotNumber = SpotNumber;
+		this.spotNumber = SpotNumber;
 	}
 
 }
