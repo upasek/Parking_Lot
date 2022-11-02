@@ -33,9 +33,9 @@ public class App{
 			if (size == 5) {
 				System.out.print("\033\143");
 				// get car information from car class
-				String carcolor = randominfo.CarColor();
-				String numberplate = randominfo.Numberplate();
-				String cartype = randominfo.CarType();
+				String carcolor = randominfo.carColor();
+				String numberplate = randominfo.numberPlate();
+				String cartype = randominfo.carType();
 
 				parkingticket.setAssignedCar(car);
 				parkingticket.getAssignedCar().setNumberPlate(numberplate);
@@ -53,9 +53,9 @@ public class App{
 
 				// get parking ticket from parkingticket class
 				String cardtype = randominfo.CardType();
-				String time = randominfo.Time();
-				String date = randominfo.Date();
-				long cardnumber = randominfo.CardNumber();
+				String time = randominfo.time();
+				String date = randominfo.date();
+				long cardnumber = randominfo.cardNumber();
 
 				parkingticket.setCardType(cardtype);
 				parkingticket.setTime(time);
@@ -99,9 +99,9 @@ public class App{
 							int spot = assignedspotlist.indexOf(cp);
 							//System.out.println("\n"+spot+"\n");
 
-							String exitdate = randominfo.ExitDate();
+							String exitdate = randominfo.exitDate();
 
-							String exittime = randominfo.ExitTime();
+							String exittime = randominfo.exitTime();
 
 							String enterdate = assignedspotlist.get(spot).getDate();
 							String entertime = assignedspotlist.get(spot).getTime();
