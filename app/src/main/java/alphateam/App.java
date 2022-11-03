@@ -107,7 +107,7 @@ public class App{
 							String entertime = assignedspotlist.get(spot).getTime();
 
 
-							int time[] = totaltime.CalculateTime(enterdate, exitdate, entertime, exittime);
+							int time[] = totaltime.calculateTime(enterdate, exitdate, entertime, exittime);
 							float amount = payment.TotalAmount(time[0], time[1]);
 
 							System.out.println("\n\t\t=== Your Parking information ===\n" +
