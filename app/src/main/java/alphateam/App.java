@@ -13,6 +13,7 @@ public class App{
         System.out.println(new App().getGreeting());
     }
 
+	/* 
 	public static void run() {
 		ArrayList<ParkingTicket> assignedspotlist = new ArrayList<>();
 
@@ -58,8 +59,8 @@ public class App{
 				long cardnumber = randominfo.CardNumber();
 
 				parkingticket.setCardType(cardtype);
-				parkingticket.setTime(time);
-				parkingticket.setDate(date);
+				parkingticket.setEnterTime(time);
+				parkingticket.setEnterDate(date);
 				parkingticket.setCardNumber(cardnumber);
 
 
@@ -103,8 +104,8 @@ public class App{
 
 							String exittime = randominfo.ExitTime();
 
-							String enterdate = assignedspotlist.get(spot).getDate();
-							String entertime = assignedspotlist.get(spot).getTime();
+							String enterdate = assignedspotlist.get(spot).getEnterDate();
+							String entertime = assignedspotlist.get(spot).getEnterTime();
 
 
 							int time[] = totaltime.CalculateTime(enterdate, exitdate, entertime, exittime);
@@ -114,9 +115,9 @@ public class App{
 									"Car Number : " + assignedspotlist.get(spot).getAssignedCar().getNumberPlate() +
 									"    Car Color : " + assignedspotlist.get(spot).getAssignedCar().getCarColor() +
 									"    Car Type : "+assignedspotlist.get(spot).getAssignedCar().getCarType()+
-									"\nParking Time : "+assignedspotlist.get(spot).getTime()+
+									"\nParking Time : "+assignedspotlist.get(spot).getEnterTime()+
 									"    Exit Time : "+exittime+
-									"\nParking Date : "+assignedspotlist.get(spot).getDate()+
+									"\nParking Date : "+assignedspotlist.get(spot).getEnterDate()+
 									"    Exit Date :" +exitdate+
 									"    Spot Number : "+assignedspotlist.get(spot).getSpotNumber()+
 									"\nTotal Time : "+time[0]+" Hour "+time[1]+" Minute "+
@@ -142,7 +143,7 @@ public class App{
 					System.out.println("\n\ncar number : "+pt.getAssignedCar().getNumberPlate()+
 							"       car color : "+pt.getAssignedCar().getCarColor()+
 							"       car type : "+pt.getAssignedCar().getCarType()+
-							"\nparking time : "+pt.getTime()+"    date : "+pt.getDate()+
+							"\nparking time : "+pt.getEnterTime()+"    date : "+pt.getEnterDate()+
 							"       spot number : "+pt.getSpotNumber()
 
 					);
@@ -153,5 +154,6 @@ public class App{
 			}
 
 		}
-	}
+		
+	}*/
 }
