@@ -1,9 +1,35 @@
 public class Car{
-	public String NumberPlate;
-	public String CarColor; //red, yellow, green, etc..
-	public String CarType;
+	public static final String TYPE_SEDAN = "sedan";
+    public static final String TYPE_SUV = "suv";
+    public static final String TYPE_COUPE = "coupe";
+    
+    private String NumberPlate;
+    private String CarColor;
+    private String CarType;
+ 
+    
+   private Car() {}
 
-	public String getNumberPlate(){
+    
+    public static Car createCar(String type) {
+        switch (type.toLowerCase()) {
+            case TYPE_SEDAN:
+                return new Sedan();
+            case TYPE_SUV:
+                return new Suv();
+            case TYPE_COUPE:
+                return new Coupe();
+            default:
+                throw new IllegalArgumentException("Tipo de auto no válido");
+        }
+    }
+
+    // Subclases internas para cada tipo de auto
+    private static class Sedan extends Car{}
+    private static class Suv extends Car{}
+    private static class Coupe extends Car{}
+	
+    public String getNumberPlate(){
 		return NumberPlate;
 	}
 

@@ -1,13 +1,61 @@
 import java.util.ArrayList;
+
 import java.util.*;
-
-
 public class ParkingLot{
+	
+	private static ParkingLot instanciaParkinglot;
+	public ArrayList<ParkingTicket> asignarpotlist;
+	private List<ParkinglotObserver> observers = new ArrayList<>();
+	
+	private ParkingLot() {
+		this.asignarpotlist = new ArrayList<>();
+	}
+	
+	public static ParkingLot getInstancia() {
+		if (instanciaParkinglot == null) {
+			synchronized (ParkingLot.class) {
+				if (instanciaParkinglot == null) {
+					instanciaParkinglot = new ParkingLot();
+				}
+			}
+		}
+		return instanciaParkinglot;
+	} 
+	
+	public void addObserver(ParkinglotObserver observer) {
+        observers.add(observer);
+    }
 
+    public void removeObserver(ParkinglotObserver observer) {
+        observers.remove(observer);
+    }
+
+    private void notifyCarPark(Car parkCar, int spotNumber) {
+        for (ParkinglotObserver observer : observers) {
+            observer.carPark(parkCar, spotNumber);
+        }
+    }
+
+    private void notifyCarNoPark(Car noParkedCar, int spotNumber) {
+        for (ParkinglotObserver observer : observers) {
+            observer.carNoPark(noParkedCar, spotNumber);
+        }
+    }
+
+    // Metodo para estacionar un auto
+    public void parkCar(Car car, int spotNumber) {
+        notifyCarPark(car, spotNumber);
+    }
+
+    // Metodo para que un auto salga del estacionamiento
+    public void departCar(Car car, int spotNumber) {
+        notifyCarNoPark(car, spotNumber);
+    }
+	
 	public static void main(String[] args){
 
-		ArrayList<ParkingTicket> assignedspotlist = new ArrayList<>();
-
+		
+		ParkingLot parkingLot = ParkingLot.getInstancia();
 
 		ParkingSpot parkingspot = new ParkingSpot();
 		RandomInfo randominfo = new RandomInfo();
@@ -20,8 +68,8 @@ public class ParkingLot{
 			int size = userinput.length();
 
 			ParkingTicket parkingticket = new ParkingTicket();
-			Car car = new Car();
-
+			Car car = null;
+			Car.createCar("suv");
 			if (size == 5) {
 				System.out.print("\033\143");
 				// get car information from car class
@@ -63,8 +111,8 @@ public class ParkingLot{
 				);
 
 
-				assignedspotlist.add(parkingticket);
-				System.out.println(assignedspotlist.size());
+				parkingLot.asignarpotlist.add(parkingticket);
+				System.out.println(parkingLot.asignarpotlist.size());
 
 			}
 			else if(size == 4){
@@ -81,42 +129,42 @@ public class ParkingLot{
 					TotalTime totaltime = new TotalTime();
 					Payment payment = new Payment();
 
-					for(ParkingTicket cp : assignedspotlist){
+					for(ParkingTicket cp : parkingLot.asignarpotlist){
 						String carnumber = cp.getAssignedCar().getNumberPlate();
 						int item = scanticket.cheaknumber(number, carnumber);
 						if( item == 0 ){
 							continue;
 						}
 						else if(item == 1){
-							int spot = assignedspotlist.indexOf(cp);
+							int spot = parkingLot.asignarpotlist.indexOf(cp);
 							//System.out.println("\n"+spot+"\n");
 
 							String exitdate = randominfo.ExitDate();
 
 							String exittime = randominfo.ExitTime();
 
-							String enterdate = assignedspotlist.get(spot).getDate();
-							String entertime = assignedspotlist.get(spot).getTime();
+							String enterdate = parkingLot.asignarpotlist.get(spot).getDate();
+							String entertime = parkingLot.asignarpotlist.get(spot).getTime();
 
 
 							int time[] = totaltime.CalculateTime(enterdate, exitdate, entertime, exittime);
 							float amount = payment.TotalAmount(time[0], time[1]);
 
 							System.out.println("\n\t\t=== Your Parking information ===\n" +
-									"Car Number : " + assignedspotlist.get(spot).getAssignedCar().getNumberPlate() +
-									"    Car Color : " + assignedspotlist.get(spot).getAssignedCar().getCarColor() +
-									"    Car Type : "+assignedspotlist.get(spot).getAssignedCar().getCarType()+
-									"\nParking Time : "+assignedspotlist.get(spot).getTime()+
+									"Car Number : " + parkingLot.asignarpotlist.get(spot).getAssignedCar().getNumberPlate() +
+									"    Car Color : " + parkingLot.asignarpotlist.get(spot).getAssignedCar().getCarColor() +
+									"    Car Type : "+parkingLot.asignarpotlist.get(spot).getAssignedCar().getCarType()+
+									"\nParking Time : "+parkingLot.asignarpotlist.get(spot).getTime()+
 									"    Exit Time : "+exittime+
-									"\nParking Date : "+assignedspotlist.get(spot).getDate()+
+									"\nParking Date : "+parkingLot.asignarpotlist.get(spot).getDate()+
 									"    Exit Date :" +exitdate+
-									"    Spot Number : "+assignedspotlist.get(spot).getSpotNumber()+
+									"    Spot Number : "+parkingLot.asignarpotlist.get(spot).getSpotNumber()+
 									"\nTotal Time : "+time[0]+" Hour "+time[1]+" Minute "+
 									"\nTotal Amount : "+amount+" rupees\n"
 							);
 
-							parkingspot.FreeSpot(assignedspotlist.get(spot).getSpotNumber());
-							assignedspotlist.remove(spot);
+							parkingspot.FreeSpot(parkingLot.asignarpotlist.get(spot).getSpotNumber());
+							parkingLot.asignarpotlist.remove(spot);
 
 							break;
 						}
@@ -130,7 +178,7 @@ public class ParkingLot{
 			else if(size == 6){
 
 				System.out.println("All Car Information : \n");
-				for(ParkingTicket pt : assignedspotlist){
+				for(ParkingTicket pt : parkingLot.asignarpotlist){
 					System.out.println("\n\ncar number : "+pt.getAssignedCar().getNumberPlate()+
 							"       car color : "+pt.getAssignedCar().getCarColor()+
 							"       car type : "+pt.getAssignedCar().getCarType()+
